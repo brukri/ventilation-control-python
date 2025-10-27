@@ -1,0 +1,14 @@
+[Unit]
+Description=Ventilation Control Service (User)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/ventilation-control-python
+Environment=PYTHONUNBUFFERED=1
+ExecStart=%h/ventilation-control-python/venv/bin/python %h/ventilation-control-python/main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
