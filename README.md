@@ -42,10 +42,24 @@ The ventilation levels are controlled through the following GPIO port configurat
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
+3. Configure pip to use piwheels (pre-compiled wheels for Raspberry Pi):
+   ```bash
+   # Create or edit pip configuration
+   mkdir -p ~/.config/pip
+   echo "[global]
+   extra-index-url=https://www.piwheels.org/simple" > ~/.config/pip/pip.conf
+   ```
+
 4. Install the requirements:
    ```bash
+   # Update pip first
+   pip install --upgrade pip
+   
+   # Install requirements using piwheels
    pip install -r requirements.txt
    ```
+
+   Note: The installation will be much faster now as it uses pre-compiled wheels from piwheels.org instead of building from source.
 
 ### On Ubuntu (Development/Testing)
 
