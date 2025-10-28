@@ -30,13 +30,19 @@ The ventilation levels are controlled through the following GPIO port configurat
    cd ventilation-control-python
    ```
 
-2. Create a virtual environment and activate it:
+2. Install required system packages:
+   ```bash
+   sudo apt update
+   sudo apt install python3-venv python3-dev
+   ```
+
+3. Create a virtual environment and activate it:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. Install the requirements:
+4. Install the requirements:
    ```bash
    pip install -r requirements.txt
    ```

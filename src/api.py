@@ -21,7 +21,15 @@ async def get_level():
     return {"level": controller.get_level()}
 
 @app.post("/ventilation-control/level/{level}")
-async def set_level(level: VentilationLevel):
+async def set_level(level: str):
     """Set the ventilation level"""
-    controller.set_level(level)
-    return {"level": level, "status": "success"}
+    try:
+        ventilation_level = VentilationLevel(level.lower())
+        controller.set_level(ventilation_level)
+        return {"level": ventilation_level, "status": "success"}
+    except ValueError:
+        valid_levels = [level.value for level in VentilationLevel]
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid ventilation level. Valid levels are: {', '.join(valid_levels)}"
+        )
